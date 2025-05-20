@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Registro Coordinador</title>
+  <title>Registro Subcoordinador</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
@@ -133,7 +133,7 @@
     <div class="form-card">
       <img src="portada.png" alt="Imagen portada" class="portada">
 
-      <div class="form-title">Formulario de Coordinador</div>
+      <div class="form-title">Formulario de Subcoordinador</div>
       <form id="formCoordinador">
         <div class="mb-3">
           <label for="nombre" class="form-label">Nombre completo</label>
@@ -166,8 +166,12 @@
           <input type="text" class="form-control" id="municipio" required>
         </div>
         <div class="mb-3">
-          <label for="subcoordinadores" class="form-label">Número de subcoordinadores</label>
-          <input type="number" class="form-control" id="subcoordinadores" required>
+          <label for="promotores" class="form-label">Número de Promotores</label>
+          <input type="number" class="form-control" id="promotores" required>
+        </div>
+        <div class="mb-3">
+          <label for="promovidos" class="form-label">Número de Red de Promovidos</label>
+          <input type="number" class="form-control" id="promovidos" required>
         </div>
         <!-- Opción para selfie o archivo -->
         <div class="mb-3">
@@ -207,7 +211,8 @@
         correo: document.getElementById('correo').value,
         estado: document.getElementById('estado').value,
         municipio: document.getElementById('municipio').value,
-        subcoordinadores: document.getElementById('subcoordinadores').value,
+        promotores: document.getElementById('promotores').value,
+        promovidos: document.getElementById('promovidos').value,
       };
 
       fetch('/api/guardar', {

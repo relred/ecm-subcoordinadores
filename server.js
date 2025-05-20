@@ -32,7 +32,8 @@ const createTableQuery = `
     correo VARCHAR(255),
     estado VARCHAR(255),
     municipio VARCHAR(255),
-    subcoordinadores TEXT
+    promotores VARCHAR(255),
+    promovidos VARCHAR(255)
   )
 `;
 
@@ -51,18 +52,18 @@ app.use(express.static(path.join(__dirname)));
 
 // Ruta para guardar datos del formulario
 app.post('/api/guardar', (req, res) => {
-  const { nombre, celular, correo, estado, municipio, subcoordinadores } = req.body;
+  const { nombre, celular, correo, estado, municipio, promotores, promovidos } = req.body;
 
-  if (!nombre || !celular || !correo || !estado || !municipio || subcoordinadores === undefined) {
+  if (!nombre || !celular || !correo || !estado || !municipio || !promotores || !promovidos) {
     return res.status(400).json({ error: 'Faltan campos' });
   }
 
   const insertQuery = `
-    INSERT INTO coordinadores (nombre, celular, correo, estado, municipio, subcoordinadores)
-    VALUES (?, ?, ?, ?, ?, ?)
+    INSERT INTO coordinadores (nombre, celular, correo, estado, municipio, promotores, promovidos)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
   `;
 
-  db.query(insertQuery, [nombre, celular, correo, estado, municipio, subcoordinadores], (err, result) => {
+  db.query(insertQuery, [nombre, celular, correo, estado, municipio, promotores, promovidos], (err, result) => {
     if (err) {
       console.error('❌ Error al guardar:', err.message);
       return res.status(500).json({ error: 'Error al guardar datos' });
